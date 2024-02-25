@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[34]:
-
-
 import streamlit as st
 import os
 from PIL import Image
@@ -76,8 +70,6 @@ if uploaded_file is not None:
         # show
         col1,col2,col3,col4,col5 = st.columns(5)
         
-        
-
         # Show the recommended images
         with col1:
             # Load and display the first recommended image
@@ -108,9 +100,7 @@ if uploaded_file is not None:
             image_path_5 = filenames[indices[0][4]]
             image_5 = Image.open(image_path_5)
             st.image(image_5, caption='Recommended Image 5', use_column_width=True)
-
-
-            
+    
     else:
         st.header("Some error occured in file upload")
 
