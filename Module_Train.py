@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
-
-
 import tensorflow    #It is used for building & traning deep learming models. 
 from tensorflow.keras.preprocessing import image    #It is used for loading and preprocessing images.
 from tensorflow.keras.layers import GlobalMaxPooling2D    #It is used for spatial data reduction in convolution neural networks.
@@ -12,10 +6,6 @@ import numpy as np          #It is used for numerical computaions and array mani
 from numpy.linalg import norm  #The 'norm' function from Numpy's linear algebra modul for vector normalization.
 import pickle          #It is used for serializing ans deserializing Python objects.
 import os           #It is used for interacting with the opreting system, such as file handling directory operations.
-
-
-# In[6]:
-
 
 # Specify the directory where the files are saved
 save_dir = "D:/Fashion Recommendation System"
@@ -28,10 +18,6 @@ with open(os.path.join(save_dir, "embeddings.pkl"), 'rb') as embeddings_file:
 with open(os.path.join(save_dir, "filenames.pkl"), 'rb') as filenames_file:
     filenames = pickle.load(filenames_file)
 
-
-# In[7]:
-
-
 model = ResNet50(weights = "imagenet",include_top = False,input_shape = (224,224,3))
 model.trainable = False 
 
@@ -40,15 +26,7 @@ model = tensorflow.keras.Sequential([
     GlobalMaxPooling2D()
 ])
 
-
-# In[5]:
-
-
 from sklearn.neighbors import NearestNeighbors
-
-
-# In[111]:
-
 
 img = image.load_img("D:/Fashion Recommendation System/saari.jpg", target_size=(224, 224))  # Resizing the image to (224, 224)
 img_array = image.img_to_array(img)
@@ -56,10 +34,6 @@ expanded_img_array = np.expand_dims(img_array, axis=0)
 preprocessed_img = preprocess_input(expanded_img_array)
 result = model.predict(preprocessed_img).flatten()
 normalized_result = result / np.linalg.norm(result)
-
-
-# In[112]:
-
 
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -84,11 +58,6 @@ print(a)
 # Convert backslashes to forward slashes
 file_paths_forward_slash = [path.replace("\\", "/") for path in a]
 print(file_paths_forward_slash)
-    
-
-
-# In[113]:
-
 
 for path in file_paths_forward_slash:
     # Load the image
@@ -98,4 +67,3 @@ for path in file_paths_forward_slash:
     plt.imshow(img)
     plt.axis('off')  # Hide axis
     plt.show()  
-
