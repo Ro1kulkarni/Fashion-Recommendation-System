@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[32]:
-
-
 import tensorflow    #It is used for building & traning deep learming models. 
 from tensorflow.keras.preprocessing import image    #It is used for loading and preprocessing images.
 from tensorflow.keras.layers import GlobalMaxPooling2D    #It is used for spatial data reduction in convolution neural networks.
@@ -13,10 +7,6 @@ from numpy.linalg import norm        #The 'norm' function from Numpy's linear al
 import os          #It is used for interacting with the opreting system, such as file handling directory operations. 
 from tqdm import tqdm        #It is used for displaying progress bars during iterations.
 import pickle           #It is used for serializing ans deserializing Python objects.
-
-
-# In[33]:
-
 
 model = ResNet50(weights = "imagenet",include_top = False,input_shape = (224,224,3))
 model.trainable = False 
@@ -28,10 +18,6 @@ model = tensorflow.keras.Sequential([
 
 print(model.summary())
 
-
-# In[34]:
-
-
 def extract_features(img_path, model):
     img = image.load_img(img_path, target_size=(224, 224))  # Resizing the image to (224, 224)
     img_array = image.img_to_array(img)                     # Convert the image to a numpy array
@@ -40,10 +26,6 @@ def extract_features(img_path, model):
     result = model.predict(preprocessed_img).flatten()      # Use the pre-trained model to extract features from the preprocessed image 
     normalized_result = result / np.linalg.norm(result)     # Normalize the extracted features to ensure they have unit norm
     return normalized_result                                # Return the normalized feature vector
-
-
-# In[35]:
-
 
 filenames = []
 images = 'D:\images'
@@ -54,27 +36,12 @@ for file in os.listdir(images):
 print("Number of Images =",len(filenames))
 print("Path of first five images =",filenames[0:5])
 
-
-# In[38]:
-
-
 feature_list = []
 for file in tqdm(filenames):
     feature_list.append(extract_features(file,model))
 
 pickle.dump(feature_list,open("embeddings.pkl",'wd'))
 pickle.dump(filenames,open("filnames.pkl",'wb'))
-
-
-# In[42]:
-
-
-#pickle.dump(feature_list, open("embeddings.pkl", 'wb'))
-#pickle.dump(filenames, open("filenames.pkl", 'wb'))
-
-
-# In[41]:
-
 
 # Specify the directory Path
 save_dir = "D:/"
@@ -87,9 +54,6 @@ pickle.dump(feature_list, open(os.path.join(save_dir, "embeddings.pkl"), 'wb'))
 
 # Save filenames to filenames.pkl in the specified directory
 pickle.dump(filenames, open(os.path.join(save_dir, "filenames.pkl"), 'wb'))
-
-
-# In[51]:
 
 
 print("Shape for feature_list =",np.array(feature_list).shape)
