@@ -1,12 +1,12 @@
-import tensorflow                                                            #It is used for building & traning deep learming models. 
-from tensorflow.keras.preprocessing import image                             #It is used for loading and preprocessing images.
-from tensorflow.keras.layers import GlobalMaxPooling2D                       #It is used for spatial data reduction in convolution neural networks.
-from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input #It is used for preprocess_input function for image preprocessing.
-import numpy as np                                                           #It is used for numerical computaions and array manipulation.
-from numpy.linalg import norm                                                #The 'norm' function from Numpy's linear algebra modul for vector normalization.
-import os                                                         #It is used for interacting with the opreting system, such as file handling directory operations. 
-from tqdm import tqdm                                                        #It is used for displaying progress bars during iterations.
-import pickle                                                                #It is used for serializing ans deserializing Python objects.
+import tensorflow           #It is used for building & traning deep learming models. 
+from tensorflow.keras.preprocessing import image         #It is used for loading and preprocessing images.
+from tensorflow.keras.layers import GlobalMaxPooling2D       #It is used for spatial data reduction in convolution neural networks.
+from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input     #It is used for preprocess_input function for image preprocessing.
+import numpy as np        #It is used for numerical computaions and array manipulation.
+from numpy.linalg import norm         #The 'norm' function from Numpy's linear algebra modul for vector normalization.
+import os              #It is used for interacting with the opreting system, such as file handling directory operations. 
+from tqdm import tqdm       #It is used for displaying progress bars during iterations.
+import pickle           #It is used for serializing ans deserializing Python objects.
 
 
 # Load the ResNet50 model pre-trained on the ImageNet dataset,
