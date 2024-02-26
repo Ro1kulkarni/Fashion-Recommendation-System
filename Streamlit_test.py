@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[34]:
-
-
 import streamlit as st  # Import the Streamlit library 
 import os     #It is used for interacting with the opreting system, such as file handling directory operations.
 from PIL import Image   # Import the Image module from the Python Imaging Library (PIL)
@@ -109,4 +103,3 @@ if uploaded_file is not None:
 
     else:
         st.header("Some error occured in file upload")
-
